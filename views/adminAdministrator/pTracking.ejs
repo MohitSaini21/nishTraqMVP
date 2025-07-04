@@ -186,7 +186,12 @@
                                 </td>
                               </tr>
                             <% }) %>
-                          <% } %>
+                          
+                             <% } else { %>
+                              <tr>
+                                <td colspan="4">No events recorded</td>
+                              </tr>
+                              <% } %>
                         </tbody>
                       </table>
                       
@@ -354,8 +359,13 @@
         }
       });
 
+      let isFirst=true;
       socket.on("busUpdate", function (data) {
         console.log(data);
+        if(isFirst){
+          document.querySelector("#stops-covered tbody").innerHTML=""
+          isFirst=false;
+        }
         if (data && data.busObject) {
           updateStopsCoveredTable(data.busObject.reachedStops);
         }
