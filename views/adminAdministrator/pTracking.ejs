@@ -354,6 +354,10 @@
 }
 
       socket.emit("getObject", { busId: bus._id }, function (response) {
+        const tbody = document.querySelector("#stops-covered tbody");
+    
+        
+          tbody.innerHTML=""
         if (response.data) {
           updateStopsCoveredTable(response.data.reachedStops);
         }
